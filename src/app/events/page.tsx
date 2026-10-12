@@ -27,7 +27,7 @@ const upcomingEvents = [
       "A hands-on project sprint where members work in teams to ship real app prototypes.",
   },
 ];
-
+const pastEvents: PastEvent[] = [];
 
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] =
