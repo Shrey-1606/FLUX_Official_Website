@@ -28,7 +28,7 @@ const upcomingEvents = [
   },
 ];
 
-const pastEvents = [];
+const pastEvents: Event[] = [];
 
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] =
