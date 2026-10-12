@@ -1,0 +1,225 @@
+.hero {
+  /* parallax inputs, written by Hero.tsx */
+  --mx: 0;
+  --my: 0;
+  --sy: 0;
+  /* fraction of each wire that starts off-screen, written by Hero.tsx */
+  --skip: 0.4;
+
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  background: #050505;
+  isolation: isolate;
+}
+
+/* every moving layer reads the same variables with its own depth */
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(
+    calc(var(--mx) * var(--dx, 0) * 1px),
+    calc((var(--my) * var(--dy, 0) + var(--sy) * var(--ky, 0)) * 1px),
+    0
+  );
+}
+
+
+
+/* the wordmark: fades in first (0.2s - 1.6s), then the wires follow */
+.word {
+  --dx: 8;
+  --dy: 4;
+  --ky: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: min(10vw, 40vh);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: #fff8e1;
+  white-space: nowrap;
+  user-select: none;
+  opacity: 0;
+  animation: wordIn 1.4s ease-out 0.2s forwards;
+}
+
+@keyframes wordIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* slight glitch: one quick flicker every ~8s, idle the rest of the time */
+.glitch {
+  display: inline-block;
+  animation: glitch 5s steps(1, end) 6.5s infinite;
+}
+
+@keyframes glitch {
+  0%,
+  93%,
+  100% {
+    transform: none;
+    text-shadow: none;
+  }
+  94% {
+    transform: translate(-3px, 0) skewX(-3deg);
+    text-shadow: 3px 0 rgba(255, 214, 10, 0.85), -3px 0 rgba(255, 140, 0, 0.7);
+  }
+  95% {
+    transform: translate(3px, 1px) skewX(2deg);
+    text-shadow: -3px 0 rgba(255, 214, 10, 0.85), 3px 0 rgba(255, 140, 0, 0.7);
+  }
+  96% {
+    transform: translate(-1px, -1px);
+    text-shadow: 2px 0 rgba(255, 214, 10, 0.6), -2px 0 rgba(255, 140, 0, 0.5);
+  }
+  97% {
+    transform: none;
+    text-shadow: none;
+  }
+}
+
+.wiresBack,
+.wiresFront {
+  width: 100%;
+  height: 100%;
+  /* An <svg> clips to its own box, and the box moves with the parallax, which
+     made wires look cut off 40px from the edge. Let them draw past it; the
+     .hero's overflow:hidden still trims everything at the real screen edge. */
+  overflow: visible;
+}
+.wiresBack {
+  --dx: -16;
+  --dy: -8;
+  --ky: 0.12;
+  opacity: 0.32;
+}
+.backScale {
+  transform-origin: 800px 350px;
+  transform: scale(1.28);
+}
+.wiresFront {
+  --dx: 42;
+  --dy: 22;
+  --ky: -0.22;
+  filter: drop-shadow(0 0 6px rgba(255, 196, 0, 0.55));
+}
+
+/*
+ * Wires emerge from the screen edges toward the middle.
+ * Delay + duration are set inline in Hero.tsx (staggered per wire).
+ * The animation starts at --skip (the off-screen part of the wire is already
+ * "drawn"), so the visible part starts growing from the edge right away.
+ * `both` keeps the wire hidden during the delay, so FLUX fades in first.
+ */
+.wire {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 3.6s linear both;
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: var(--skip);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* solder dots pop in as the wire reaches them (delay set inline) */
+.dot {
+  opacity: 0;
+  animation: dotIn 0.5s ease-out forwards;
+}
+@keyframes dotIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* a short bright dash of "current" travelling edge -> middle on one wire */
+/* (stroke colour + fade comes from the #fluxPulse gradient set in Hero.tsx) */
+.pulse {
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 0.16 2;
+  stroke-dashoffset: 0.16;
+  filter: drop-shadow(0 0 6px #ffd84d);
+  animation: pulse 2s linear forwards;
+}
+@keyframes pulse {
+  from {
+    stroke-dashoffset: 0.16;
+  }
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+.left,
+.right {
+  --dx: 14;
+  --dy: 8;
+  --ky: -0.06;
+  inset: auto;
+  top: 71%;
+  font-size: clamp(0.95rem, 1.25vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.3;
+  color: #fff;
+  text-shadow: 0 0 14px #050505, 0 0 4px #050505;
+}
+.left {
+  left: clamp(20px, 5vw, 72px);
+  text-align: left;
+}
+.right {
+  right: clamp(20px, 5vw, 72px);
+  text-align: right;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 700px) {
+  .word {
+    font-size: 20vw;
+  }
+  .left,
+  .right {
+    top: auto;
+    bottom: 96px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    transform: none;
+  }
+  .word,
+  .dot {
+    opacity: 1;
+    animation: none;
+  }
+  .glitch,
+  .pulse {
+    animation: none;
+  }
+  .wire {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}

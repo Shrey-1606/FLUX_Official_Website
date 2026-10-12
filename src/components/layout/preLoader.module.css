@@ -1,0 +1,72 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  user-select: none;
+  touch-action: none;
+  transition: opacity 0.65s ease, visibility 0.65s ease;
+}
+
+.exit {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.logoWrap {
+  margin-bottom: 30px;
+  animation: logoReveal 0.9s ease both;
+}
+
+.logoWrap img {
+  width: 92px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.loaderBar {
+  width: min(280px, 70vw);
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: #ffffff;
+  transition: width 0.12s linear;
+}
+
+.percentage {
+  margin-top: 16px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  opacity: 0.72;
+  user-select: none;
+}
+
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

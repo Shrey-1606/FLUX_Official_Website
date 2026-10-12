@@ -1,0 +1,46 @@
+/* sits above the page and the dock, below the navbar (1100) */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  pointer-events: none;
+  background-color: rgba(5, 5, 5, 0);
+}
+
+/* leaving: old page fades out very quickly */
+.cover {
+  background-color: rgba(5, 5, 5, 1);
+  transition: background-color 0.15s ease-out;
+}
+
+/* arriving: dark layer lifts while the blur sharpens ("focus in") */
+.reveal {
+  animation: reveal 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+}
+
+@keyframes reveal {
+  0% {
+    background-color: rgba(5, 5, 5, 1);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  35% {
+    background-color: rgba(5, 5, 5, 0.35);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  100% {
+    background-color: rgba(5, 5, 5, 0);
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover {
+    transition: none;
+  }
+  .reveal {
+    animation: none;
+  }
+}

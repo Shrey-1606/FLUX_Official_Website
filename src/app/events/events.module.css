@@ -1,0 +1,545 @@
+.eventsPage {
+  position: relative;
+  min-height: 100vh;
+  padding: 150px 24px 110px;
+  color: white;
+  background: #050505;
+  overflow: hidden;
+}
+
+.auroraBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.hero,
+.section {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hero h1 {
+  max-width: 900px;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  font-weight: 850;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.section {
+  margin-top: 90px;
+}
+
+.sectionHeader {
+  margin-bottom: 32px;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.upcomingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.upcomingCard,
+.pastCard,
+.sliderModal {
+  background: rgba(255, 255, 255, 0.095);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+}
+
+.upcomingCard {
+  min-height: 270px;
+  padding: 28px;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+
+.cardTop span,
+.pastContent span,
+.sliderTop span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cardTop p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.upcomingCard h3 {
+  font-size: 25px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.upcomingCard > div:last-child p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.pastGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.pastCard {
+  width: 100%;
+  min-height: 520px;
+  padding: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.pastCard:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.coverWrap {
+  width: 100%;
+  height: 270px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.coverWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.9;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.pastCard:hover .coverWrap img {
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+.pastContent {
+  flex: 1;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pastContent h3 {
+  margin: 14px 0 12px;
+  font-size: 27px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.pastContent p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.pastContent small {
+  margin-top: auto;
+  padding-top: 28px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* GALLERY MODAL */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  padding: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.84);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  animation: overlayFadeIn 0.35s ease both;
+}
+
+.sliderModal {
+  position: relative;
+  width: min(100%, 1080px);
+  height: min(78vh, 660px);
+
+  padding: 72px 72px 58px;
+  border-radius: 34px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  animation: galleryPopIn 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.sliderTop {
+  display: none;
+}
+
+.slideFrame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+
+  border-radius: 26px;
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.slideImage {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  object-fit: contain;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  animation: imageFadeIn 0.45s ease both;
+}
+
+/* CLOSE BUTTON */
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  z-index: 20;
+
+  width: 46px;
+  height: 46px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: white;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  font-size: 0;
+  line-height: 0;
+
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.closeBtn::before,
+.closeBtn::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: white;
+}
+
+.closeBtn::before {
+  transform: rotate(45deg);
+}
+
+.closeBtn::after {
+  transform: rotate(-45deg);
+}
+
+.closeBtn:hover {
+  transform: scale(1.06) rotate(90deg);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ARROW BUTTONS */
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+
+  width: 56px;
+  height: 56px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transform: translateY(-50%);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.arrowBtn::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+
+  border-top: 4px solid white;
+  border-right: 4px solid white;
+
+  display: block;
+}
+
+.leftArrow {
+  left: 22px;
+}
+
+.rightArrow {
+  right: 22px;
+}
+
+.leftArrow::before {
+  transform: rotate(-135deg);
+  margin-left: 5px;
+}
+
+.rightArrow::before {
+  transform: rotate(45deg);
+  margin-right: 5px;
+}
+
+.arrowBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.counter {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+
+  transform: translateX(-50%);
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes galleryPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 950px) {
+  .eventsPage {
+    padding: 130px 18px 90px;
+  }
+
+  .hero {
+    min-height: 46vh;
+  }
+
+  .upcomingGrid,
+  .pastGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pastCard {
+    min-height: auto;
+  }
+
+  .coverWrap {
+    height: 260px;
+  }
+
+  .modalOverlay {
+    padding: 18px;
+  }
+
+  .sliderModal {
+    width: min(100%, 760px);
+    height: 78vh;
+    padding: 66px 22px 54px;
+    border-radius: 28px;
+  }
+
+  .slideFrame {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .eventsPage {
+    padding-inline: 16px;
+  }
+
+  .upcomingCard,
+  .pastCard,
+  .sliderModal {
+    border-radius: 24px;
+  }
+
+  .upcomingCard {
+    min-height: 240px;
+    padding: 24px;
+  }
+
+  .modalOverlay {
+    padding: 14px;
+  }
+
+  .sliderModal {
+    height: 76vh;
+    padding: 62px 14px 50px;
+  }
+
+  .coverWrap {
+    height: 230px;
+  }
+
+  .closeBtn {
+    width: 42px;
+    height: 42px;
+    top: 14px;
+    right: 14px;
+  }
+
+  .arrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .arrowBtn::before {
+    width: 11px;
+    height: 11px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+  }
+
+  .leftArrow {
+    left: 12px;
+  }
+
+  .rightArrow {
+    right: 12px;
+  }
+
+  .counter {
+    bottom: 16px;
+    font-size: 13px;
+  }
+}

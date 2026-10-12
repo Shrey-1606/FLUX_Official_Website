@@ -1,0 +1,115 @@
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5.2;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-family: inherit;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, #2a2a2a, #121212);
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.initials {
+  font-size: 64px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 30%;
+}
+
+/* dark fade rising from the bottom, like the reference */
+.fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0) 38%,
+    rgba(10, 10, 10, 0.75) 62%,
+    rgba(10, 10, 10, 0.96) 100%
+  );
+  pointer-events: none;
+}
+
+.body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.badge {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.role {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.blurb {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.follow {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  border-radius: 999px;
+  background: #fafafa;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+a.follow:hover {
+  background: #eab308;
+  transform: scale(1.02);
+}
+
+.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

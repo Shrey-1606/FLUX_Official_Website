@@ -1,0 +1,458 @@
+.navTrigger {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
+  z-index: 1100;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn {
+  height: 56px;
+  width: 260px;
+  line-height: 56px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 2px;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.btn span {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-weight: 700;
+}
+
+.btnThree {
+  position: relative;
+  transition: 0.5s;
+}
+
+.btnThree::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 40px;
+  transition: 0.3s;
+}
+
+.btnThree:hover::before {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.btnThree::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+.btnThree:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: 30px 0;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu {
+  position: relative;
+  top: 75px;
+  left: 50%;
+  width: min(94%, 1320px); 
+  min-height: 680px;
+  margin-bottom: 120px;
+  padding: 140px 100px 90px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.7);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px; 
+  align-items: center;
+  gap: 110px;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.94);
+  transition: transform 0.6s cubic-bezier(.77, 0, .18, 1), opacity 0.6s ease;
+}
+
+.overlay.active .menu {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 28px;
+  right: 38px;
+  z-index: 25;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: 0.3s;
+  background: transparent;
+  border: none;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+.brand {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  z-index: 15;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand img {
+  width: auto;
+  max-width: 170px;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.leftSection {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.navLinks a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: clamp(30px, 3.4vw, 48px);
+  line-height: 1.08;
+  font-weight: 800;
+  color: white;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
+
+.overlay.active .navLinks a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay.active .navLinks a:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.overlay.active .navLinks a:nth-child(2) {
+  transition-delay: 0.18s;
+}
+
+.overlay.active .navLinks a:nth-child(3) {
+  transition-delay: 0.26s;
+}
+
+.overlay.active .navLinks a:nth-child(4) {
+  transition-delay: 0.34s;
+}
+
+.overlay.active .navLinks a:nth-child(5) {
+  transition-delay: 0.42s;
+}
+
+.overlay.active .navLinks a:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+.navLinks a:hover {
+  transition-delay: 0s !important;
+  transform: translateY(0) translateX(15px) !important;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.overlay:not(.active) .navLinks a {
+  transition: none !important;
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.leadership {
+  width: 100%;
+  min-height: 300px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 30px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.overlay.active .leadership {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.4s;
+}
+
+.overlay:not(.active) .leadership {
+  transition: none !important;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.leadHeader {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leadCard {
+  color: white;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: translateX(15px);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.overlay.active .leadCard {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.overlay.active .leadCard:nth-child(2) {
+  transition-delay: 0.6s;
+}
+
+.overlay.active .leadCard:nth-child(3) {
+  transition-delay: 0.7s;
+}
+
+.overlay.active .leadCard:nth-child(4) {
+  transition-delay: 0.8s;
+}
+
+.overlay:not(.active) .leadCard {
+  transition: none !important;
+  opacity: 0;
+  transform: translateX(15px);
+}
+
+.leadCard img {
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.leadCard h3 {
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.leadCard span {
+  font-size: 13px;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
+
+.leadCard:last-child {
+  border: none;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .navTrigger {
+    top: 22px;
+  }
+
+  .overlay {
+    padding: 18px 0 32px;
+  }
+
+  .menu {
+    grid-template-columns: 1fr;
+    width: 94%;
+    min-height: auto;
+    top: 58px;
+    padding: 80px 28px 36px;
+    border-radius: 34px;
+    gap: 40px;
+  }
+
+.brand {
+    position: relative; 
+    top: 0;
+    left: 0;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 15;
+  }
+
+  .brand img {
+    max-width: 170px;
+  }
+
+  .closeBtn {
+    top: 24px;
+    right: 28px;
+  }
+
+  .navLinks {
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .navLinks a {
+    font-size: clamp(28px, 7vw, 40px);
+    line-height: 1.05;
+  }
+
+  .navLinks a:hover {
+    transform: none !important;
+  }
+
+  .leadership {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .navTrigger {
+    top: 18px;
+  }
+
+  .btn {
+    width: 220px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+  }
+
+  .menu {
+    width: 94%;
+    top: 54px;
+    padding: 82px 18px 28px;
+    border-radius: 28px;
+    gap: 30px;
+  }
+
+.brand {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+  .brand img {
+    max-width: 140px;
+  }
+
+  .closeBtn {
+    top: 20px;
+    right: 22px;
+    font-size: 26px;
+  }
+
+  .navLinks {
+    gap: 18px;
+  }
+
+  .navLinks a {
+    font-size: clamp(26px, 8vw, 34px);
+  }
+
+  .leadership {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .leadCard {
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .leadCard img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .leadCard h3 {
+    font-size: 16px;
+  }
+}
