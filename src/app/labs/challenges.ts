@@ -16,7 +16,7 @@ const DAY = 86_400_000;
  * exactly CHALLENGE_DAYS after the first.
  */
 export const CHALLENGES: readonly Challenge[] = [
-  {/*{
+  /*{
     id: "2026-10-a",
     title: "Chatbot creator, simple and accessible for small businesses",
     description:
@@ -32,7 +32,8 @@ export const CHALLENGES: readonly Challenge[] = [
     tools: ["React Native + Expo", "FastAPI (Python)", "Supabase", "Websockets"],
     start: "2026-10-07T00:00:00+05:30",
   },
-*/}];
+*/
+];
 
 export type Slot = { challenge: Challenge; startsAt: number; endsAt: number };
 
