@@ -68,38 +68,6 @@ export default function Navbar() {
             
             <Link href="/events" onClick={closeMenu}>Events</Link>
           </div>
-
-          <div className={styles.leadership}>
-            <div className={styles.leadHeader}>Leadership</div>
-
-            <div className={styles.leadCard}>
-              <Image
-                src="/images/shrey.png"
-                alt="Shreyansh"
-                width={60}
-                height={60}
-                draggable={false}
-              />
-              <div className={styles.cardInfo}>
-                <h3>Shreyansh Upadhyaya</h3>
-                <span>Chair</span>
-              </div>
-            </div>
-
-            <div className={styles.leadCard}>
-              <Image
-                src="/images/sammy.png"
-                alt="Sammy"
-                width={60}
-                height={60}
-                draggable={false}
-              />
-              <div className={styles.cardInfo}>
-                <h3>Sanmitra Patil</h3>
-                <span>Chair</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
